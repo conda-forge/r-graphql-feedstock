@@ -1,4 +1,4 @@
-{% set version = '1.5' %}
+{% set version = "1.5.1" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,11 +11,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/graphql_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/graphql/graphql_{{ version }}.tar.gz
-  sha256: 594f52be1b1a69efa4882ecdbfec7e1341c04980d70a497c7b3497e947a2217e
+  sha256: 68f324cc49eee06f866532c28cd5602eff293e99b6157a81b151ef00f18af783
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
 
   rpaths:
     - lib/R/lib/
@@ -52,11 +52,10 @@ test:
 about:
   home: http://graphql.org (upstream) https://github.com/ropensci/graphql (devel)
   license: MIT
-  summary: Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports
-    the AST in JSON format.
+  summary: Bindings to the 'libgraphqlparser' C++ library. Parses GraphQL syntax and exports the AST in JSON format.
   license_family: MIT
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/MIT
     - LICENSE
 
 extra:

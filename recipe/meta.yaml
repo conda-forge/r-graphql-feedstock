@@ -1,7 +1,6 @@
 {% set version = "1.5.1" %}
 
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-graphql
@@ -14,8 +13,7 @@ source:
   sha256: 68f324cc49eee06f866532c28cd5602eff293e99b6157a81b151ef00f18af783
 
 build:
-  merge_build_host: true  # [win]
-  number: 2
+  number: 3
 
   rpaths:
     - lib/R/lib/
@@ -24,7 +22,9 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ posix }}filesystem        # [win]
@@ -40,7 +40,6 @@ requirements:
 
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-rcpp >=0.12.12
     - r-jsonlite
 

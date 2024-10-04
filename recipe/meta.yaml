@@ -1,4 +1,4 @@
-{% set version = "1.5.1" %}
+{% set version = "1.5.2" %}
 
 {% set posix = 'm2-' if win else '' %}
 
@@ -10,10 +10,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/graphql_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/graphql/graphql_{{ version }}.tar.gz
-  sha256: 68f324cc49eee06f866532c28cd5602eff293e99b6157a81b151ef00f18af783
+  sha256: 580939f60fbe887f2733de1b72b6a9d9248687a9421f9e04ed87d642363c322d
 
 build:
-  number: 3
+  number: 0
 
   rpaths:
     - lib/R/lib/

@@ -1,5 +1,4 @@
 {% set version = "1.5.3" %}
-
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -13,11 +12,14 @@ source:
   sha256: 14f7b9b15311e1b1f9852f888d55822eb0b43fb6756ac85d82d8023660b2319e
 
 build:
-  number: 0
-
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -32,12 +34,10 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
-
   host:
     - r-base
     - r-rcpp >=0.12.12
     - r-jsonlite
-
   run:
     - r-base
     - r-rcpp >=0.12.12
@@ -63,7 +63,6 @@ extra:
     - jezcope
 
 # The original CRAN metadata for this package was:
-
 # Package: graphql
 # Type: Package
 # Title: A GraphQL Query Parser
@@ -84,7 +83,6 @@ extra:
 # Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 # Repository: CRAN
 # Date/Publication: 2018-12-01 14:00:03 UTC
-
 # See
 # https://docs.conda.io/projects/conda-build for
 # more information about meta.yaml
